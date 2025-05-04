@@ -1,0 +1,68 @@
+Krok 1: Určte IP adresu a masku podsiete
+Pred vytvorením podsiete musíte vedieť, akú IP adresu a masku podsiete chcete použiť. Predpokladajme, že máte základnú sieťovú adresu a chcete rozdeliť túto sieť na niekoľko menších podsietí. Môžete použiť nástroj na výpočet podsietí, ako je napríklad subnet calculator, ktorý vám pomôže určiť správnu masku podsiete a rozsah IP adries.
+
+Krok 2: Pripojte sa k Cisco routeru
+Na začiatok sa pripojte k Cisco routeru prostredníctvom konzoly alebo telnetu/SSH:
+
+Zadajte príkaz do konzolového režimu:
+
+shell
+Kopírovať
+Upraviť
+Router> enable
+Prejdite do globálneho konfiguračného režimu:
+
+arduino
+Kopírovať
+Upraviť
+Router# configure terminal
+Krok 3: Nakonfigurujte rozhrania routera
+Predpokladajme, že máte rozhrania, ktoré budú pripojené do rôznych podsietí. Napríklad:
+
+GigabitEthernet0/0 bude v sieti 192.168.1.0/24
+
+GigabitEthernet0/1 bude v sieti 192.168.2.0/24
+
+Zadajte nasledovné príkazy na konfiguráciu rozhraní.
+
+Prvé rozhranie (GigabitEthernet0/0):
+arduino
+Kopírovať
+Upraviť
+Router(config)# interface gigabitEthernet 0/0
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# no shutdown
+Druhé rozhranie (GigabitEthernet0/1):
+arduino
+Kopírovať
+Upraviť
+Router(config)# interface gigabitEthernet 0/1
+Router(config-if)# ip address 192.168.2.1 255.255.255.0
+Router(config-if)# no shutdown
+Krok 4: Vytvorte ďalšie podsiete
+Ak chcete vytvoriť ďalšie podsiete, jednoducho upravte IP adresu a masku podsiete na ďalších rozhraniach podľa toho, ako ste si naplánovali podsiete.
+
+Napríklad, ak chcete pridať ďalšie rozhranie v rôznej podsieti:
+
+arduino
+Kopírovať
+Upraviť
+Router(config)# interface gigabitEthernet 0/2
+Router(config-if)# ip address 192.168.3.1 255.255.255.0
+Router(config-if)# no shutdown
+Krok 5: Uložte konfiguráciu
+Aby sa zmeny zachovali aj po reštarte, nezabudnite uložiť konfiguráciu:
+
+arduino
+Kopírovať
+Upraviť
+Router# write memory
+Krok 6: Otestujte konfiguráciu
+Po nakonfigurovaní podsietí môžete otestovať pripojenie medzi zariadeniami v rôznych podsietiach pomocou príkazu ping.
+
+Napríklad, ak máte zariadenie s IP adresou 192.168.1.100 v prvej podsieti, môžete pingovať na routerovú IP adresu:
+
+arduino
+Kopírovať
+Upraviť
+Router# ping 192.168.1.100
