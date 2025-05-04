@@ -1,0 +1,27 @@
+1. Pripojenie do MikroTik routera
+Spusti Winbox alebo sa prihlás cez WebFig (webový prehliadač).
+
+Prihlás sa pomocou admin účtu.
+
+2. Vytvorenie novej IP podsiete
+a) Pridanie novej IP adresy na rozhranie
+Choď do IP > Addresses
+
+Klikni na + (Add)
+
+Zadaj IP adresu vrátane masky, napr.:
+
+192.168.10.1/24
+
+Vyber rozhranie (napr. ether3, bridge2 atď.)
+
+Klikni na Apply a potom OK
+
+3. Pridanie DHCP servera (ak potrebuješ automatickú IP distribúciu)
+Choď do IP > DHCP Server
+
+Klikni na DHCP Setup
+
+Vyber rozhranie, kde si pridal novú IP adresu
+
+Postupuj cez sprievodcu – nastav rozsah IP, DNS, gateway atď.
